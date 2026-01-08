@@ -33,7 +33,7 @@ export default function OsmTaxMap({
   localRatePercent,
   specialUsage,
 }: OsmTaxMapProps) {
-  const canCompute = !!area && !!type && !!cityZone;
+  const canCompute = !!area && !!type;
   // Use only local dataset; show markers only for cities with coordinates
   const citiesWithCoords = roCities.filter(
     (c) => typeof c.lat === "number" && typeof c.lng === "number"
