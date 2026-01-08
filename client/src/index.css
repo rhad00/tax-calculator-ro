@@ -174,4 +174,18 @@
       max-width: 1280px; /* Standard content width */
     }
   }
+
+  /* Fix Leaflet map z-index to stay below sticky header */
+  .leaflet-container {
+    z-index: 0 !important;
+  }
+  
+  .leaflet-pane {
+    z-index: auto !important;
+  }
+  
+  .leaflet-top,
+  .leaflet-bottom {
+    z-index: 10 !important;
+  }
 }
