@@ -180,10 +180,21 @@
     z-index: 0 !important;
   }
   
-  .leaflet-pane {
-    z-index: auto !important;
+  /* Keep tile and overlay panes low */
+  .leaflet-tile-pane,
+  .leaflet-overlay-pane {
+    z-index: 1 !important;
   }
   
+  /* Ensure tooltips and popups work */
+  .leaflet-tooltip-pane,
+  .leaflet-popup-pane,
+  .leaflet-marker-pane,
+  .leaflet-shadow-pane {
+    z-index: 20 !important;
+  }
+  
+  /* Keep map controls visible but below header */
   .leaflet-top,
   .leaflet-bottom {
     z-index: 10 !important;
