@@ -20,7 +20,7 @@ RUN pnpm run build
 FROM nginx:alpine
 
 # Copy built frontend to nginx
-COPY --from=frontend-builder /app/dist/client /usr/share/nginx/html
+COPY --from=frontend-builder /app/dist /usr/share/nginx/html
 
 # Copy nginx config for SPA routing
 RUN echo 'server { listen 3000; location / { root /usr/share/nginx/html; try_files $uri $uri/ /index.html; } }' > /etc/nginx/conf.d/default.conf
