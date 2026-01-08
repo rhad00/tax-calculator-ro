@@ -2,7 +2,7 @@ import React from "react";
 import { MapContainer, TileLayer, Marker, Tooltip } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { getBuildingTypeDetails } from "@/lib/taxCalculations";
+import { getBuildingTypeDetails, CITY_COEFFICIENTS } from "@/lib/taxCalculations";
 import roCities, { CityItem } from "@/data/ro_cities";
 
 // Default Leaflet marker fix for missing images in bundlers
@@ -52,29 +52,57 @@ export default function OsmTaxMap({
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         />
         {citiesWithCoords.map((c) => {
-          let taxText = "Introdu suprafața și parametrii pentru o estimare";
-          if (canCompute) {
+          let content: React.ReactNode;
+          
+          if (!canCompute) {
+            content = (
+              <div className="text-xs">
+                <div><strong>{c.name}</strong> — Rang {c.rank}</div>
+                <div>Introdu suprafața și parametrii pentru o estimare</div>
+              </div>
+            );
+          } else {
             try {
               const rateData = getBuildingTypeDetails(type!);
               const rate = hasUtilities ? rateData.withUtilities : rateData.withoutUtilities;
               const usageMultiplier =
                 specialUsage === "locuinta" ? 0.75 : specialUsage === "alte_scopuri" ? 0.5 : 1.0;
               const localRateFraction = Math.min(Math.max(localRatePercent, 0.08), 0.2) / 100;
-              const tax = area! * rate * usageMultiplier * localRateFraction;
-              taxText = `Estimare simplificată (fără zonă): ${tax.toFixed(2)} lei`;
+              
+              // Calculate for all zones
+              const zones: Array<"A" | "B" | "C" | "D"> = ["A", "B", "C", "D"];
+              const taxes = zones.map(zone => {
+                const zoneCoeff = CITY_COEFFICIENTS[zone]?.[c.rank] ?? 1;
+                const tax = area! * rate * usageMultiplier * zoneCoeff * localRateFraction;
+                return { zone, tax };
+              });
+              
+              content = (
+                <div className="text-xs">
+                  <div className="font-semibold mb-1"><strong>{c.name}</strong> — Rang {c.rank}</div>
+                  <div className="space-y-0.5">
+                    {taxes.map(({ zone, tax }) => (
+                      <div key={zone}>
+                        Zona {zone}: <span className="font-medium">{tax.toFixed(2)} lei</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
             } catch {
-              // ignore
+              content = (
+                <div className="text-xs">
+                  <div><strong>{c.name}</strong> — Rang {c.rank}</div>
+                  <div>Eroare la calcul</div>
+                </div>
+              );
             }
           }
+          
           return (
             <Marker key={c.name} position={[c.lat, c.lng]} icon={defaultIcon}>
               <Tooltip direction="top" offset={[0, -6]} opacity={1} permanent={false}>
-                <div className="text-xs">
-                  <div>
-                    <strong>{c.name}</strong> — Rang {c.rank}
-                  </div>
-                  <div>{taxText}</div>
-                </div>
+                {content}
               </Tooltip>
             </Marker>
           );
