@@ -303,12 +303,11 @@ export default function BuildingTaxCalculator() {
             <li>Selectează <span className="font-medium">Tipul clădirii</span> și dacă are <span className="font-medium">utilități</span>.</li>
             <li>Opțional: setează <span className="font-medium">încăperi S/D/M</span> și <span className="font-medium">cota locală</span>.</li>
             <li>
-              Harta arată o <span className="font-medium">estimare fără zonă/rang</span>. Pentru suma exactă,
-              alege și <span className="font-medium">Rangul</span> și <span className="font-medium">Zona (A–D)</span> în formular,
+              Pentru suma exactă, alege și <span className="font-medium">Rangul</span> și <span className="font-medium">Zona (A–D)</span> în formular,
               apoi apasă <span className="font-medium">Calculează impozitul</span>.
             </li>
           </ul>
-          <p>Harta folosește OpenStreetMap (fără cheie API).</p>
+          <p>Harta folosește OpenStreetMap.</p>
         </div>
         <OsmTaxMap
           area={area ? Number(area) : null}
