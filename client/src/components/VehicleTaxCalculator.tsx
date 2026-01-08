@@ -18,6 +18,7 @@ import {
   getEuroNorms,
   VehicleTaxInput,
 } from "@/lib/taxCalculations";
+import { isDiscountAvailable } from "@/lib/dateUtils";
 import { AlertCircle, CheckCircle2, Car, Bike, Bus, Circle, Gauge, Leaf, Zap } from "lucide-react";
 
 export default function VehicleTaxCalculator() {
@@ -246,33 +247,55 @@ export default function VehicleTaxCalculator() {
 
       {/* Rezultat */}
       {result && (
-        <Card className="p-6 bg-gradient-to-br from-green-50 to-emerald-50 border-green-200">
+        <>
+          {/* Discount Warning - only show if discount is available */}
+          {isDiscountAvailable() && (
+            <Card className="p-4 bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-400 dark:border-amber-600/70">
+              <div className="flex gap-3">
+                <AlertCircle className="w-6 h-6 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
+                <div>
+                  <h4 className="font-bold text-amber-900 dark:text-amber-200 mb-1">💰 Reducere de 10% disponibilă!</h4>
+                  <p className="text-sm text-amber-800 dark:text-amber-200 mb-2">
+                    Dacă plătiți taxa <strong>până la 31 martie 2026</strong>, beneficiați de o reducere de <strong>10%</strong>.
+                  </p>
+                  <div className="bg-white dark:bg-slate-800/80 rounded p-2 border border-amber-200 dark:border-amber-700/50">
+                    <p className="text-xs text-amber-700 dark:text-amber-200">
+                      <span className="font-semibold">Taxa cu reducere (10%):</span> <span className="text-base font-bold text-amber-700 dark:text-amber-300">{(result.tax * 0.9).toFixed(2)} lei</span>
+                    </p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Taxa normală: {result.tax.toFixed(2)} lei</p>
+                  </div>
+                </div>
+              </div>
+            </Card>
+          )}
+        
+          <Card className="p-6 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/40 dark:to-emerald-950/40 border-green-200 dark:border-green-700/70">
           <div className="flex gap-3 mb-4">
-            <CheckCircle2 className="w-6 h-6 text-green-600 flex-shrink-0" />
+            <CheckCircle2 className="w-6 h-6 text-green-600 dark:text-green-400 flex-shrink-0" />
             <div>
-              <h3 className="font-bold text-green-900">Rezultatul calculului impozitului</h3>
-              <p className="text-sm text-green-700">Conform Legii 239/2025</p>
+              <h3 className="font-bold text-green-900 dark:text-green-200">Rezultatul calculului impozitului</h3>
+              <p className="text-sm text-green-700 dark:text-green-300">Conform Legii 239/2025</p>
             </div>
           </div>
 
           <div className="space-y-3">
-            <div className="bg-white rounded-lg p-4 border border-green-100">
-              <p className="text-sm text-slate-600 mb-1">Suma anuală a impozitului:</p>
-              <p className="text-4xl font-bold text-green-700">
+            <div className="bg-white dark:bg-slate-800/80 rounded-lg p-4 border border-green-100 dark:border-green-700/50">
+              <p className="text-sm text-slate-600 dark:text-slate-300 mb-1">Suma anuală a impozitului:</p>
+              <p className="text-4xl font-bold text-green-700 dark:text-green-400">
                 {result.tax.toFixed(2)} lei
               </p>
             </div>
 
-            <div className="bg-white rounded-lg p-4 border border-green-100">
-              <p className="text-sm text-slate-600 mb-2">Detalii calcul:</p>
-              <p className="text-sm font-mono text-slate-700">
+            <div className="bg-white dark:bg-slate-800/80 rounded-lg p-4 border border-green-100 dark:border-green-700/50">
+              <p className="text-sm text-slate-600 dark:text-slate-300 mb-2">Detalii calcul:</p>
+              <p className="text-sm font-mono text-slate-700 dark:text-slate-300">
                 {result.breakdown}
               </p>
             </div>
 
             {euro === "hybrid_le_50" && (
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-                <p className="text-xs text-blue-800">
+              <div className="bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800/50 rounded-lg p-3">
+                <p className="text-xs text-blue-800 dark:text-blue-200">
                   <strong>Notă:</strong> Pentru hibride ≤50g CO₂/km se poate
                   aplica o reducere locală de până la 30% (stabilită de
                   consiliul local).
@@ -281,13 +304,14 @@ export default function VehicleTaxCalculator() {
             )}
           </div>
         </Card>
+        </>
       )}
 
       {/* Butoane */}
       <div className="flex gap-3">
         <Button
           onClick={handleCalculate}
-          className="flex-1 bg-blue-600 hover:bg-blue-700"
+          className="flex-1 bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white"
           size="lg"
         >
           Calculează impozitul
@@ -295,7 +319,7 @@ export default function VehicleTaxCalculator() {
         <Button
           onClick={handleReset}
           variant="outline"
-          className="flex-1"
+          className="flex-1 dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-700"
           size="lg"
         >
           Resetează
@@ -303,9 +327,9 @@ export default function VehicleTaxCalculator() {
       </div>
 
       {/* Cum funcționează */}
-      <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-        <h4 className="font-semibold text-slate-900 mb-2">Cum funcționează:</h4>
-        <ol className="text-sm text-slate-700 space-y-1 list-decimal list-inside">
+      <div className="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-lg p-4">
+        <h4 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">Cum funcționează:</h4>
+        <ol className="text-sm text-slate-700 dark:text-slate-300 space-y-1 list-decimal list-inside">
           <li>Selectează tipul vehiculului și cilindreea motorului</li>
           <li>Alege norma de poluare (standard Euro)</li>
           <li>Impozitul se calculează: (Cilindree ÷ 200) × Rata per 200 cm³</li>
@@ -314,14 +338,14 @@ export default function VehicleTaxCalculator() {
       </div>
 
       {/* Reguli pentru hibride și electrice */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-        <h4 className="font-semibold text-blue-900 mb-2">Reguli pentru hibride și electrice:</h4>
-        <ul className="text-sm text-blue-800 space-y-1 list-disc list-inside">
+      <div className="bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800/50 rounded-lg p-4">
+        <h4 className="font-semibold text-blue-900 dark:text-blue-200 mb-2">Reguli pentru hibride și electrice:</h4>
+        <ul className="text-sm text-blue-800 dark:text-blue-200 space-y-1 list-disc list-inside">
           <li>Hibrid ≤50g CO₂/km: lei/200 cm³ (aceleași tarife ca &gt;50g), cu reducere locală de până la 30%.</li>
           <li>Hibrid &gt;50g CO₂/km: se aplică lei/200 cm³ conform categoriei vehiculului.</li>
           <li>Vehicul electric: 40 lei/an (sumă fixă).</li>
         </ul>
-        <div className="mt-3 text-xs text-blue-900 bg-white/60 border border-blue-200 rounded-md p-3">
+        <div className="mt-3 text-xs text-blue-900 dark:text-blue-200 bg-white/60 dark:bg-slate-800/60 border border-blue-200 dark:border-blue-800/50 rounded-md p-3">
           <p className="font-semibold mb-1">Exemplu (hibrid &gt;50g CO₂/km):</p>
           <p>
             Autoturism cu 1.800 cm³ → unități = ceil(1800/200) = 9; categoria 1.601–2.000 cm³

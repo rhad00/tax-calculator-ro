@@ -199,4 +199,27 @@
   .leaflet-bottom {
     z-index: 10 !important;
   }
+
+  /* Dark mode support for Leaflet tooltips */
+  .dark .leaflet-tooltip {
+    background-color: rgb(30 41 59 / 0.95) !important;
+    border: 1px solid rgb(71 85 105 / 0.7) !important;
+    color: rgb(226 232 240) !important;
+  }
+
+  .dark .leaflet-tooltip-top:before {
+    border-top-color: rgb(30 41 59 / 0.95) !important;
+  }
+
+  .dark .leaflet-tooltip-bottom:before {
+    border-bottom-color: rgb(30 41 59 / 0.95) !important;
+  }
+
+  .dark .leaflet-tooltip-left:before {
+    border-left-color: rgb(30 41 59 / 0.95) !important;
+  }
+
+  .dark .leaflet-tooltip-right:before {
+    border-right-color: rgb(30 41 59 / 0.95) !important;
+  }
 }
