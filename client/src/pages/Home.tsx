@@ -41,13 +41,13 @@ export default function Home() {
           {/* Card informativ */}
           <div className="mb-6 sm:mb-8 p-4 sm:p-6 bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 rounded-lg">
             <h2 className="text-base sm:text-lg font-semibold text-blue-900 dark:text-blue-200 mb-2">
-              ℹ️ Despre acest calculator
+              ℹ️ Calculator Impozite și Taxe Locale 2026 - România
             </h2>
             <p className="text-blue-800 dark:text-blue-300 text-xs sm:text-sm leading-relaxed">
-              Acest calculator te ajută să calculezi impozitele pentru vehicule
-              și clădiri conform Legii 239/2025, valabilă de la 1 ianuarie 2026.
-              Introdu detaliile vehiculului sau informațiile despre clădire
-              pentru a obține rapid o estimare a impozitului.
+              Acest calculator te ajută să calculezi rapid impozitele și taxele locale pentru 2026 conform Legii 239/2025. 
+              Calculează <strong>impozitul pe autoturism, mașină, vehicul</strong>, <strong>impozitul pe locuință, apartament, casă</strong>, 
+              <strong>impozitul pe clădiri și construcții</strong>, precum și <strong>impozitul pe teren și terenuri</strong> (intravilan și extravilan). 
+              Introdu detaliile vehiculului sau informațiile despre proprietatea imobiliară pentru a obține o estimare precisă a impozitului.
             </p>
           </div>
 
@@ -74,97 +74,111 @@ export default function Home() {
 
             {/* Tab impozit vehicul */}
             <TabsContent value="vehicle" className="space-y-6">
-              <div className="bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-4 sm:p-6 md:p-8 shadow-sm">
+              <article className="bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-4 sm:p-6 md:p-8 shadow-sm">
                 <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-slate-100 mb-2">
-                  Calculator impozit vehicul
+                  Calculator Impozit Auto 2026 - Autoturism, Mașină, Vehicul
                 </h2>
                 <p className="text-slate-600 dark:text-slate-400 mb-4 sm:mb-6 text-sm sm:text-base">
-                  Calculează impozitul pentru vehicul în funcție de cilindree și
-                  norma de poluare (standard Euro).
+                  Calculează impozitul pentru autoturism, mașină sau orice vehicul în funcție de capacitatea cilindrică (cm³), 
+                  norma de poluare (standard Euro 0-6), vehicule hibride și electrice. Calculator actualizat pentru 2026.
                 </p>
                 <VehicleTaxCalculator />
-              </div>
+              </article>
             </TabsContent>
 
             {/* Tab impozit clădire */}
             <TabsContent value="building" className="space-y-6">
-              <div className="bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-4 sm:p-6 md:p-8 shadow-sm">
+              <article className="bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-4 sm:p-6 md:p-8 shadow-sm">
                 <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-slate-100 mb-2">
-                  Calculator impozit clădire
+                  Calculator Impozit Clădiri 2026 - Locuințe, Apartamente, Case
                 </h2>
                 <p className="text-slate-600 dark:text-slate-400 mb-4 sm:mb-6 text-sm sm:text-base">
-                  Calculează impozitul pentru clădire în funcție de tip, utilități
-                  și suprafață.
+                  Calculează impozitul pe locuință, apartament, casă sau orice clădire în funcție de tip (rezidențial/nerezidențial), 
+                  suprafață construită (m²), utilități, zona (A-D), rangul localității și cota locală. Calculator impozit imobiliare 2026.
                 </p>
                 <BuildingTaxCalculator />
-              </div>
+              </article>
             </TabsContent>
 
             {/* Tab impozit teren */}
             <TabsContent value="land" className="space-y-6">
-              <div className="bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-4 sm:p-6 md:p-8 shadow-sm">
+              <article className="bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-4 sm:p-6 md:p-8 shadow-sm">
                 <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-slate-100 mb-2">
-                  Calculator impozit pe teren
+                  Calculator Impozit pe Teren 2026 - Terenuri Intravilan și Extravilan
                 </h2>
                 <p className="text-slate-600 dark:text-slate-400 mb-4 sm:mb-6 text-sm sm:text-base">
-                  Calculează impozitul pentru teren (intravilan sau extravilan) în
-                  funcție de zona, rang și categoria de folosință.
+                  Calculează impozitul pentru teren sau terenuri (intravilan cu/fără construcții sau extravilan) în 
+                  funcție de suprafață, zona (A-D), rangul localității și categoria de folosință. Calculator taxe teren 2026.
                 </p>
                 <LandTaxCalculator />
-              </div>
+              </article>
             </TabsContent>
 
             {/* Tab impozit compus */}
             <TabsContent value="composite" className="space-y-6">
-              <div className="bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-4 sm:p-6 md:p-8 shadow-sm">
+              <article className="bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-4 sm:p-6 md:p-8 shadow-sm">
                 <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-slate-100 mb-2">
-                  Calculator impozit compus
+                  Calculator Impozit Total 2026 - Toate Proprietățile
                 </h2>
                 <p className="text-slate-600 dark:text-slate-400 mb-4 sm:mb-6 text-sm sm:text-base">
-                  Adaugă toate proprietățile tale (vehicule, clădiri, terenuri) pentru
+                  Adaugă toate proprietățile tale (vehicule, autoturisme, mașini, clădiri, locuințe, apartamente, case, terenuri) pentru
                   a calcula impozitul total și a beneficia de reducerea de 10% dacă
-                  plătești până la 31 martie 2026. Exportă rezultatul în PDF.
+                  plătești până la 31 martie 2026. Exportă rezultatul în PDF pentru evidență.
                 </p>
                 <CompositeTaxCalculator />
-              </div>
+              </article>
             </TabsContent>
           </Tabs>
 
           {/* Informații suplimentare */}
-          <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-slate-200 dark:border-slate-700">
+          <section className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-slate-200 dark:border-slate-700">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
               <div>
                 <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-2 text-sm sm:text-base">
-                  Noutăți impozit vehicule
+                  Noutăți Calculator Impozit Auto / Vehicule 2026
                 </h3>
                 <ul className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 space-y-1">
-                  <li>✓ Bazat pe cilindree ȘI norma de poluare</li>
-                  <li>✓ Vehicule electrice: 40 lei/an</li>
-                  <li>✓ Hibride: lei/200 cm³ (≤50g: până la -30% local)</li>
-                  <li>✓ Valabil de la 1 ianuarie 2026</li>
+                  <li>✓ Calculator bazat pe capacitate cilindrică (cm³) ȘI norma de poluare Euro</li>
+                  <li>✓ Vehicule electrice: impozit redus 40 lei/an</li>
+                  <li>✓ Autoturisme hibride: lei/200 cm³ (vehicule ≤50g CO₂: reducere până la -30% locală)</li>
+                  <li>✓ Noi reglementări valabile de la 1 ianuarie 2026 - Legea 239/2025</li>
                 </ul>
               </div>
               <div>
                 <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-2 text-sm sm:text-base">
-                  Noutăți impozit clădiri
+                  Noutăți Calculator Impozit Locuințe / Clădiri / Terenuri 2026
                 </h3>
                 <ul className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 space-y-1">
-                  <li>✓ Valori de bază actualizate pe m²</li>
-                  <li>✓ Rata minimă nu poate fi mai mică decât în 2025</li>
-                  <li>✓ Reducere de 50% începând cu 2027</li>
-                  <li>✓ Conform Legii 239/2025</li>
+                  <li>✓ Valori de bază actualizate pe m² pentru apartamente, case, clădiri</li>
+                  <li>✓ Cota minimă nu poate fi mai mică decât în anul 2025</li>
+                  <li>✓ Reducere treptată de 50% începând cu anul 2027</li>
+                  <li>✓ Taxe și impozite locale conform Legii 239/2025</li>
                 </ul>
               </div>
             </div>
-          </div>
+            
+            {/* SEO Content Section */}
+            <div className="mt-6 space-y-4">
+              <h3 className="font-semibold text-slate-900 dark:text-slate-100 text-sm sm:text-base">
+                Cum se calculează impozitele și taxele locale în România pentru 2026?
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                <strong>Calculatorul de impozite 2026</strong> te ajută să determini rapid valoarea taxelor locale pentru toate proprietățile tale. 
+                Pentru <strong>impozitul pe auto/autoturism/mașină</strong>, calculul ia în considerare capacitatea cilindrică a motorului și norma Euro. 
+                Pentru <strong>impozitul pe locuință/apartament/casă/clădire</strong>, se folosește suprafața construită, utilități disponibile, zona și rangul localității. 
+                Pentru <strong>impozitul pe teren/terenuri</strong> (intravilan sau extravilan), calculul depinde de suprafață, zonă și categoria de folosință. 
+                Toate calculele sunt conforme cu <strong>Legea 239/2025</strong> privind taxele și impozitele locale.
+              </p>
+            </div>
+          </section>
 
           {/* Avertisment legal */}
-          <div className="mt-6 sm:mt-8 p-3 sm:p-4 bg-slate-100 dark:bg-slate-800 rounded-lg text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-            <strong>Disclaimer:</strong> Acest calculator oferă estimări conform
-            Legii 239/2025. Sumele reale pot varia în funcție de deciziile
-            consiliului local, coeficienți și scutiri. Consultă autoritățile
-            fiscale locale pentru calcule oficiale.
-          </div>
+          <aside className="mt-6 sm:mt-8 p-3 sm:p-4 bg-slate-100 dark:bg-slate-800 rounded-lg text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            <strong>Disclaimer:</strong> Acest calculator de impozite oferă estimări orientative conform
+            Legii 239/2025 pentru calculul impozitului pe auto, autoturism, mașină, vehicul, locuință, apartament, casă, clădire, teren și terenuri. 
+            Sumele reale pot varia în funcție de hotărârile consiliului local, coeficienți specifici și scutiri aplicabile. 
+            Pentru calcule oficiale și informații detaliate despre taxele și impozitele locale, consultă primăria sau autoritățile fiscale locale.
+          </aside>
         </div>
       </main>
 
