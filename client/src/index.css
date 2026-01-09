@@ -222,4 +222,29 @@
   .dark .leaflet-tooltip-right:before {
     border-right-color: rgb(30 41 59 / 0.95) !important;
   }
+
+  /* Mobile-friendly tabs styling */
+  @media (max-width: 639px) {
+    [data-slot="tabs-trigger"] {
+      text-align: center;
+      padding: 0.75rem 0.5rem;
+    }
+
+    [data-slot="tabs-trigger"] span {
+      white-space: normal;
+      line-height: 1.2;
+      word-break: break-word;
+      hyphens: auto;
+    }
+
+    /* Ensure better tap targets on mobile */
+    [data-slot="tabs-list"] {
+      -webkit-tap-highlight-color: transparent;
+    }
+  }
+
+  /* Smooth transitions for tab changes */
+  [data-slot="tabs-trigger"] {
+    transition: all 0.2s ease-in-out;
+  }
 }
